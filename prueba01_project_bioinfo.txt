@@ -1,0 +1,43 @@
+# este trata de instalar la herramienta sra-toolkit con el sgte comando:
+  vdb-config -i
+  output: muestra error: vdb-config no encontrado
+# se prueba con el sgte comando: 
+  sudo apt install sra-toolkit
+  output: te pide contraseña [EXITO]
+  
+# queremos saber nuestra ubicacion: comando pwd
+# queremos saber si ya tenemos kms3, corremos el comando help --
+  output: invalid option #no se que significa
+# comprobamos que realmente tenemos la herramienta de sra-toolkit con el sgte comando
+  fastq-dump --version
+  output: nos muestra la version [EXITO]
+#recuerda que estamos en el directorios HOME 
+# descargamos un archivo SRR con el siguiente comando
+  prefetch SRR1553607
+  output: descarga exitosa
+# queremos convertir el archivo a fastq con el comando siguiente:
+  fasterq-dump --slipt-files SRR1553607
+  output: menciona directorio no autorizado, por lo que probablemente sea debido a que estamos en la carpeta HOME, codigo de error 3.
+# verificamos el espacio de nuestro disco duro con el comando:
+  df -h
+# no muestra limitaciones -> ahi no es el problema. Entonces es mas que probable lo del directorio
+# probamos con una version antigua de conversion, con el siguiente comando
+  fastq-dump --split-3 SRR1553607
+  output: nos muestra la descripcion de un error en formato txt
+#abrimos el texto con el comando 
+  cat ncbi_Error_report.txt
+  output: nos muestra todo el archivo
+# debido a que estamos usando un entorno WSL queremos copiar el archivo a una carpeta en windows. La finalidad es mostrarselo a CLAUDE para que ayude que significa ese archivo.txt
+# entonces, insertamos el siguiente comando:
+  cp ncbi_error_report.txt /mnt/c/Users/lenovo/Descargas/sd
+  output: EXITO, se puede comprobar mediante la interfas del explorador de windows 
+# CLAUDE nos dice que, en efecto, es por problemas de directorio autorizacion, por lo que sugiere cambiarlo a borrego
+# en la terminal nos ubicamos en la carpeta borrego
+  cd borrego
+# ejecutamos el comando para convertir el archivo:
+  faster-dump --split-3 SRR1553607
+  output: EXITO, pero no se que significa xddxd
+  
+  
+
+
