@@ -1,0 +1,30 @@
+# queria saber la estadistica de el archivo SRR155607, uso el comando:
+  fasterq-dump --sra-stat SRR1553607
+  output: ERROR
+# me pregunto si es por el directorio asi que regreso a home con cd .., y realizo lo mismo
+  output: ERROR # entoncecs el problema no es el directorios
+# el comando para la estadistica se computa sin el "fasterq-dump" !
+  sra-stat SRR1553607
+  output: me genera unos valores separados por barras #aparentemente tampoco genera un archivo fisico
+# se procede a transformar a formato legible con el siguiente comando:
+  vdb-dump --info SRR1553607
+  output: me genera varias filas. Aqui se puede ver el tamñao de la secuencia, estrategia de secuenciamiento y otros
+# el siguiente comando no se para que sirve pero me funciona (EXPLICARRRRRRRRRRRRRRRRRRRRR)
+  fastq-dump -X 5 -Z SRR1553607
+# BUSQUÉ EN LA BASE DE DATOS DE LA NCBI SRE EL TERMINO "clinical" antibiotic resistance Y ME MOSTRÓ VARIOS REPORTES, ELEGÌ EL DE K. PNEUMONIAE Y SOLO SELECCIONE 2 REPORTES EL SRR10724629 Y EL SRR10724620 QUE PESABA EN TOTAL 5OO MB APROX.
+# LA DESCARGA ES UN ARCHIVO CON FORMATO SRR_Acc_list.TXT, AQUI MUESTRA ESA CODIFICACION DE MI INTERES: "SRR10724629" Y "SRR10724620"
+# Quiero copiar desde mi carpeta sd (en  windows) hacia borrego(linux), con el siguiente comando:
+   cp /mnt/c/Users/lenovo/Downloads/sd/SRR_Acc_List.txt .
+   output: [EXITO] #se puede comprobar con ls #ES IMPORTANTE QUE LA RUTA ESTÉ BIEN ESCRITA.
+# hacemos lo mismo que con la practica01, DESCARGAMOS con el comando prefetch
+  prefetch --option-file SRR_Acc_List.txt #ESTO DESCARGARÁ LOS 2 SRR DE INTERES QUE APROX PESAN 500MB
+  output: EXITO, #se demoró casi 10 min, depende de la velocidad internet.
+# TRANSFORMAMOS A FASTQ
+  fasterq-dump --split-files --progress SRR10724629 SRR10724620
+  output: EXITO #¿AHORA QUE HACER XD? Ver la calidad, creo
+  
+
+  
+
+
+  
