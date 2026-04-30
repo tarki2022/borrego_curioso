@@ -1,0 +1,2 @@
+# ¿QUE HAY DENTRO DE UN ARCHIVO SRA?
+    sra-stat --quick SRR1553607
