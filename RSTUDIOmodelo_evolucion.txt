@@ -1,0 +1,98 @@
+# No se tenia en claro que tipos de paquetes se deberia instalar por lo que se pidio ayuda a la
+# INSTALACION DEL PAQUETE dplyr, tidyr, readr
+# definiciones: 
+
+# es posible englobar asi:
+install.packages("dplyr", "tidyr", "readr")
+
+# verificar la presencia de los paquetes
+installed.packages()
+
+# CONSTUCCION DE LOS ARBOLES FILOGENETICOS
+# instalacion de paquetes básicos para generacion de graficas
+install.packages(c("ape","ggtree","phytools"))
+
+# PAQUETES PARA LECTURA DE ARCHIVOS fasta, ANALIZAR SECUENCIAS
+# instalacion a traves del paquete que GESTIONA herramientas de Bioconductor
+install.packages("BiocManager")
+BiocManager::install(c("ggtree","Biostrings"))
+BiocManager::install("msa")
+BiocManager::install("Biostrings")
+
+# COMPROBAR FUNCIONALIDAD DEL PAQUETE
+# cargar las librerias
+library(BiocManager)
+library(ggplot2)
+library(ape)
+library(Biostrings)
+library(msa)
+
+# UBICACION DE LA CARPETA DE TRABAJO
+getwd() #en mi caso particular, está en documentos 
+
+# CAMBIAR RUTA. no acepta "\"
+setwd("D:/UPCH/BIOINFORMATICA/practicas/04") 
+
+#VERIFICAR
+getwd()
+# VER ARCHIVOS. homologo al "ls" en ubuntu
+list.files()
+dir() #cualquiera
+
+# LEER SECUENCIAS
+seqs <- readDNAStringSet("infc.fasta") #la corrida no lo hace si el arvhivo tiene espacios, etc
+
+# CORRECCION PARA PODER CORRER EN RSTUDIO
+# para leer como archivo de texto
+x <- readLines("infc_clean.fasta")
+
+# para eliminar espacios
+x <- gsub(" ", "", x)
+
+# para guardar fasta limpio
+writeLines(x, "infc_clean.fasta")
+
+# para corroborar creacion del archivo en el directorio 
+list.files()
+
+# para leer secuencia
+seqs <- readDNAStringSet("infc_clean.fasta") 
+
+# para visualizar 
+seqs
+length(seqs) # es otra alternativa, pero solo muestra cant. de secuencias
+
+
+# ALINEAMIENTO
+# usamos msa
+alignment <- msa(seqs)
+
+#visualizar el alineamiento
+alignment
+
+#ver alineamiento en rstudio
+print(alignment, show=c("alignment","version"))
+
+
+# BUSQUEDA DE MEJOR MODELO. Uso de paquete phangorn y ape. CARGAMOS LIBRERIAS
+# el paquete phangorn permitirá reconstruir el arbol filogenético mediante maxima parsimonia y max. verosimilitud
+# el paquete ape ayuda a estimar distancias evolutivas aplicando UPGNA o Neighbord...
+library(phangorn)
+#Leer alineado
+library(ape)
+
+aln <- read.phyDat("alineado.fasta", format = "fasta")
+
+# Usamos el sgte cmdo para buscar o comparar modelos
+fit <- modelTest(aln)
+
+
+
+
+
+
+
+
+
+
+
