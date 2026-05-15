@@ -1,0 +1,32 @@
+ACTUALIZAR
+sudo apt update
+
+# ACTIVIDAD DE SERVICIOS
+df -h
+
+# VER IMAGEN O DETALLES DEL SISTEMA
+sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
+sudo apt install fastfetch
+fastfetch
+
+# ELIMINAR ARCHIVOS BASURA
+sudo apt autoremove && sudo apt clean
+
+# VER PANEL DE CONTROL UBUNTU (similar a windows)
+sudo apt install htop
+htop
+
+# INSTALACION EMULADOR DE FORMATO .exe
+sudo apt install wine
+
+# instalacion de arquitectura
+sudo dpkg --add-architecture i386 && sudo apt update
+
+# instalar programa winap
+wine winap.exe
+
+# INSTALADOR DE VISOR DE PDF Y EDITOR
+sudo apt install okular
+
+# eliminar xournalpp
+¿?
