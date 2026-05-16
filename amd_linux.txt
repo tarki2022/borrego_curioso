@@ -1,0 +1,4 @@
+lspci -k | grep -EA3 'VGA| 3D'
+sudo apt install mesa-utils
+glxinfo -B
+lsmod | grep amdgpu
